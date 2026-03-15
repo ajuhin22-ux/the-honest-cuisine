@@ -76,30 +76,48 @@
     </div>
   </div>
 
-  <!-- How It Works -->
+  <!-- How It Works — Interactive Timeline -->
   <section class="section section--light">
     <div class="container">
       <div class="section-header">
-        <h2>How It Works</h2>
+        <h2>From Your Phone to Your Plate</h2>
       </div>
-      <div class="home-steps">
-        <div class="home-step">
-          <div class="home-step__num">1</div>
-          <h3>Scroll</h3>
-          <p>Menu drops on Instagram every Thursday. New dishes. Every week. Always.</p>
+      <div class="timeline">
+        <div class="timeline__line"></div>
+        <div class="timeline__item fade-in" data-day="THU">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <span class="timeline__day">Thursday</span>
+            <h3>Menu drops</h3>
+            <p>New menu posted on Instagram. Seasonal dishes you've never seen before. Screenshot your favourites.</p>
+          </div>
         </div>
-        <div class="home-step">
-          <div class="home-step__num">2</div>
-          <h3>Text</h3>
-          <p>WhatsApp your order by Friday. No app. No signup. Just a message.</p>
+        <div class="timeline__item timeline__item--right fade-in" data-day="FRI">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <span class="timeline__day">Friday</span>
+            <h3>You text us</h3>
+            <p>One WhatsApp message. Pick your dishes, drop your address. No app, no account, no checkout page.</p>
+          </div>
         </div>
-        <div class="home-step">
-          <div class="home-step__num">3</div>
-          <h3>Eat</h3>
-          <p>Made fresh Saturday morning. At your door by lunch. Done.</p>
+        <div class="timeline__item fade-in" data-day="SAT">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <span class="timeline__day">Saturday</span>
+            <h3>We cook at dawn</h3>
+            <p>Everything made from scratch that morning. Fresh produce, fresh hands, fresh energy. No reheating. No shortcuts.</p>
+          </div>
+        </div>
+        <div class="timeline__item timeline__item--right fade-in" data-day="SUN">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <span class="timeline__day">By Lunch</span>
+            <h3>At your door</h3>
+            <p>Packed in eco-friendly boxes. Still warm. Open, eat, wonder why you ever ordered from that other place.</p>
+          </div>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 2.5rem;">
+      <div style="text-align: center; margin-top: 3rem;">
         <a href="order.html" class="btn btn--filled">Order This Weekend</a>
       </div>
     </div>
@@ -185,7 +203,7 @@
           <h3>No preservatives. Zero.</h3>
         </div>
       </div>
-      <p class="promise__quote">If your dadi wouldn't recognise the ingredient, we don't use it.</p>
+      <p class="promise__quote">Just real ingredients. That's the whole list.</p>
     </div>
   </section>
 
@@ -218,8 +236,6 @@
       mobileMenu.classList.toggle('active');
       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
-
-    // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -227,6 +243,102 @@
         document.body.style.overflow = '';
       });
     });
+
+    // Fade-in on scroll
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.style.transitionDelay = (entry.target.dataset.delay || '0') + 'ms';
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.dataset.delay = (i % 4) * 100;
+      fadeObserver.observe(el);
+    });
+
+    // Animated counter for promise section
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-count]').forEach(el => {
+            const target = parseInt(el.dataset.count);
+            let current = 0;
+            const step = Math.ceil(target / 30);
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) { current = target; clearInterval(timer); }
+              el.textContent = current + '+';
+            }, 40);
+          });
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    // Timeline dot animation on scroll
+    const dotObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelector('.timeline__dot').classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.timeline__item').forEach(el => dotObserver.observe(el));
+
+    // Parallax on hero logo
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero__logo');
+      if (hero) {
+        const scroll = window.scrollY;
+        hero.style.transform = `translateY(${scroll * 0.15}px) scale(${1 - scroll * 0.0003})`;
+        hero.style.opacity = 1 - scroll * 0.002;
+      }
+    });
+
+    // Smooth reveal for teaser cards
+    const teaserObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, i * 120);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.teaser').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'all 0.5s ease';
+      teaserObserver.observe(el);
+    });
+
+    // Image grid staggered reveal
+    const imgObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const cards = entry.target.querySelectorAll('.ig-card');
+          cards.forEach((card, i) => {
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'scale(1)';
+            }, i * 100);
+          });
+          imgObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    const igGrid = document.querySelector('.ig-grid');
+    if (igGrid) {
+      igGrid.querySelectorAll('.ig-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.9)';
+        card.style.transition = 'all 0.5s ease';
+      });
+      imgObserver.observe(igGrid);
+    }
   </script>
 
 </body>
