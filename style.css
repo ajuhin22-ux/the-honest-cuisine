@@ -472,6 +472,42 @@ h4 { font-size: 1.1rem; line-height: 1.4; }
   }
 }
 
+/* ---- Home Steps ---- */
+.home-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.home-step { text-align: center; }
+
+.home-step__num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--sage);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+
+.home-step h3 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 0.6rem;
+}
+
+.home-step p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
 /* ---- Promise Section ---- */
 .promise__grid {
   display: grid;
@@ -1011,6 +1047,20 @@ h4 { font-size: 1.1rem; line-height: 1.4; }
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
+  .home-steps {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .teasers {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .teaser { padding: 24px 16px; }
+  .teaser h3 { font-size: 1.05rem; }
 
   .contact-grid {
     grid-template-columns: 1fr;
