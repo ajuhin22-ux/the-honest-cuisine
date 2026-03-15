@@ -363,37 +363,22 @@ h4 { font-size: 1.1rem; line-height: 1.4; }
 
 .ig-card {
   aspect-ratio: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
 }
-
-.ig-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-}
-
-.ig-card--sage { background: linear-gradient(135deg, #e8ede4, #d5dece); }
-.ig-card--terracotta { background: linear-gradient(135deg, #f0e0d4, #e8d0be); }
-.ig-card--olive { background: linear-gradient(135deg, #dde3d6, #cdd6c2); }
 
 .ig-card img {
-  width: 48px;
-  margin-bottom: 16px;
-  mix-blend-mode: multiply;
-  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.3s ease;
 }
 
-.ig-card p {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  line-height: 1.8;
+.ig-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.9);
 }
 
 /* ---- Promise Section ---- */
