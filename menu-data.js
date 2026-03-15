@@ -1,7 +1,6 @@
 const menuData = [
   {
     category: "Bowls",
-    emoji: "🥣",
     items: [
       { name: "The Overachiever", price: 299, desc: "Burrito bowl — brown rice, black beans, salsa fresca, smashed guac, roasted spiced veggies. Does everything right." },
       { name: "Bangkok in a Bowl", price: 329, desc: "Thai tofu basil curry — coconut broth, crispy tofu, holy basil, served over fluffy quinoa. Passport not required." },
@@ -10,7 +9,6 @@ const menuData = [
   },
   {
     category: "Salads",
-    emoji: "🥗",
     items: [
       { name: "Firestarter", price: 249, desc: "Peri peri paneer, charred peppers, crunchy greens, spicy dressing. The salad with a personality." },
       { name: "The Triple Threat", price: 219, desc: "Three bean — kidney, chickpea, black bean — tossed in herb vinaigrette. Protein-packed and unbothered." },
@@ -19,7 +17,6 @@ const menuData = [
   },
   {
     category: "Mains",
-    emoji: "🍽",
     items: [
       { name: "The Guilt-Free Slice", price: 279, desc: "Whole wheat pizza, seasonal veggies, homemade sauce. Yes, healthy pizza exists. No, we're not lying." },
       { name: "Rosso", price: 249, desc: "Vegan red sauce pasta — slow-cooked tomato basil, roasted veggies, whole wheat penne. Italian grandma approved." },
@@ -29,7 +26,6 @@ const menuData = [
   },
   {
     category: "Spreads & Dips",
-    emoji: "🫕",
     items: [
       { name: "The OG", price: 169, desc: "Classic chickpea hummus — tahini, lemon, garlic, olive oil drizzle. The one that started it all." },
       { name: "Plot Twist", price: 179, desc: "Beetroot hummus — roasted beet, chickpea, tahini. Pink, earthy, unexpected." },
@@ -39,14 +35,12 @@ const menuData = [
   },
   {
     category: "Small Plates",
-    emoji: "🌿",
     items: [
       { name: "The Garden Chilla", price: 189, desc: "Moong dal chilla with sauteed seasonal veggies and fresh dill. Light, crispy, clean." }
     ]
   },
   {
     category: "Desserts",
-    emoji: "🍫",
     items: [
       { name: "The Honest Brownie", price: 149, desc: "Sweet potato + walnut brownie. Zero maida. Zero refined sugar. 100% fudgy. Our most controversial menu item (people can't believe it's healthy)." },
       { name: "Green Velvet", price: 169, desc: "Avocado chocolate mousse — silky, rich, naturally sweetened with dates. Don't knock it till you've tried it." }
@@ -54,7 +48,6 @@ const menuData = [
   },
   {
     category: "Drinks",
-    emoji: "☕",
     items: [
       { name: "The Cold One", price: 149, desc: "Cold brew, almond milk, a date or two for sweetness. No sugar. No syrup. Just vibes." },
       { name: "The Purist", price: 129, desc: "Single origin black pour-over. No milk, no sugar, no drama. For those who like their coffee honest." }
@@ -62,7 +55,6 @@ const menuData = [
   },
   {
     category: "Combos",
-    emoji: "✨",
     isCombo: true,
     items: [
       { name: "The Taster", price: 399, desc: "Any salad + any hummus + cold coffee. For the curious first-timer." },

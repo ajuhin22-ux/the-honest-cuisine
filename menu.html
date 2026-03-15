@@ -86,7 +86,7 @@
       const section = document.createElement('div');
       section.className = 'menu-category' + (isCombo ? ' menu-category--combos' : '');
 
-      let html = `<h2 class="menu-category__title">${category.emoji ? category.emoji + ' ' : ''}${category.category}</h2>`;
+      let html = `<h2 class="menu-category__title">${category.category}</h2>`;
 
       category.items.forEach(item => {
         html += `
