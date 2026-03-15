@@ -1,65 +1,73 @@
 const menuData = [
   {
     category: "Bowls",
+    emoji: "🥣",
     items: [
-      { name: "Burrito Bowl", price: 299, desc: "Brown rice, beans, fresh salsa, guacamole, spiced roasted veggies" },
-      { name: "Thai Tofu Basil Curry Bowl", price: 329, desc: "Silken tofu, fragrant basil-coconut curry, quinoa" },
-      { name: "Paneer Quinoa Salad Bowl", price: 279, desc: "Grilled paneer, quinoa, fresh greens, lemon dressing" }
+      { name: "The Overachiever", price: 299, desc: "Burrito bowl — brown rice, black beans, salsa fresca, smashed guac, roasted spiced veggies. Does everything right." },
+      { name: "Bangkok in a Bowl", price: 329, desc: "Thai tofu basil curry — coconut broth, crispy tofu, holy basil, served over fluffy quinoa. Passport not required." },
+      { name: "The Clean Slate", price: 279, desc: "Grilled paneer, quinoa, seasonal greens, citrus dressing. Monday morning energy in a bowl." }
     ]
   },
   {
     category: "Salads",
+    emoji: "🥗",
     items: [
-      { name: "Peri Peri Paneer Salad", price: 249, desc: "Spiced paneer, mixed greens, cherry tomatoes, peri peri dressing" },
-      { name: "Three Bean Salad", price: 219, desc: "Kidney beans, chickpeas, black beans, fresh herbs, tangy vinaigrette" },
-      { name: "Green Goddess Salad", price: 239, desc: "Avocado, cucumber, kale, sprouts, green goddess dressing" }
+      { name: "Firestarter", price: 249, desc: "Peri peri paneer, charred peppers, crunchy greens, spicy dressing. The salad with a personality." },
+      { name: "The Triple Threat", price: 219, desc: "Three bean — kidney, chickpea, black bean — tossed in herb vinaigrette. Protein-packed and unbothered." },
+      { name: "Green Goddess", price: 239, desc: "Avo, cucumber, kale, sprouts, tahini goddess dressing. She's the main character." }
     ]
   },
   {
     category: "Mains",
+    emoji: "🍽",
     items: [
-      { name: "Healthy Pizza", price: 279, desc: "Whole wheat base, fresh veggies, homemade sauce, no processed cheese" },
-      { name: "Vegan Pasta Red Sauce", price: 249, desc: "Whole wheat pasta, slow-cooked tomato basil sauce, roasted vegetables" },
-      { name: "Vegan Pasta White Sauce", price: 269, desc: "Whole wheat pasta, cashew cream sauce, sauteed mushrooms, herbs" },
-      { name: "Veggie Waffle", price: 199, desc: "Savoury oat waffle loaded with vegetables, served with dip" }
+      { name: "The Guilt-Free Slice", price: 279, desc: "Whole wheat pizza, seasonal veggies, homemade sauce. Yes, healthy pizza exists. No, we're not lying." },
+      { name: "Rosso", price: 249, desc: "Vegan red sauce pasta — slow-cooked tomato basil, roasted veggies, whole wheat penne. Italian grandma approved." },
+      { name: "Bianca", price: 269, desc: "Vegan white sauce pasta — cashew cream, garlic mushrooms, fresh herbs. Rich without the regret." },
+      { name: "The Waffle That Woke Up Savoury", price: 199, desc: "Oat waffle loaded with veggies, served with fresh pesto or mint chutney. Sweet waffles are shaking." }
     ]
   },
   {
     category: "Spreads & Dips",
+    emoji: "🫕",
     items: [
-      { name: "Classic Hummus", price: 169, desc: "Creamy chickpea hummus with tahini, lemon, garlic" },
-      { name: "Beetroot Hummus", price: 179, desc: "Roasted beetroot blended with chickpeas, earthy and vibrant" },
-      { name: "Basil Hummus", price: 179, desc: "Fresh basil, chickpeas, pine nuts, a herbaceous twist" },
-      { name: "Kidney Bean Hummus", price: 169, desc: "Smoky rajma hummus with cumin and a hint of chilli" }
+      { name: "The OG", price: 169, desc: "Classic chickpea hummus — tahini, lemon, garlic, olive oil drizzle. The one that started it all." },
+      { name: "Plot Twist", price: 179, desc: "Beetroot hummus — roasted beet, chickpea, tahini. Pink, earthy, unexpected." },
+      { name: "Herb Garden", price: 179, desc: "Basil hummus — fresh basil, pine nuts, garlic. Like pesto met hummus and fell in love." },
+      { name: "Desi Remix", price: 169, desc: "Kidney bean (rajma) hummus — smoky cumin, hint of chilli. Your nani's rajma, reimagined." }
     ]
   },
   {
     category: "Small Plates",
+    emoji: "🌿",
     items: [
-      { name: "Sauteed Veggie Dill Chilla", price: 189, desc: "Moong dal chilla with sauteed seasonal vegetables and fresh dill" }
+      { name: "The Garden Chilla", price: 189, desc: "Moong dal chilla with sauteed seasonal veggies and fresh dill. Light, crispy, clean." }
     ]
   },
   {
     category: "Desserts",
+    emoji: "🍫",
     items: [
-      { name: "Sweet Potato Walnut Brownie", price: 149, desc: "Fudgy brownie made with sweet potato and walnuts, no maida, no refined sugar" },
-      { name: "Avocado Mousse", price: 169, desc: "Silky avocado and cacao mousse, naturally sweetened" }
+      { name: "The Honest Brownie", price: 149, desc: "Sweet potato + walnut brownie. Zero maida. Zero refined sugar. 100% fudgy. Our most controversial menu item (people can't believe it's healthy)." },
+      { name: "Green Velvet", price: 169, desc: "Avocado chocolate mousse — silky, rich, naturally sweetened with dates. Don't knock it till you've tried it." }
     ]
   },
   {
     category: "Drinks",
+    emoji: "☕",
     items: [
-      { name: "Cold Coffee", price: 149, desc: "Smooth cold brew with oat milk, lightly sweetened with jaggery" },
-      { name: "Black Coffee", price: 129, desc: "Single origin pour-over, no milk, no sugar, just good beans" }
+      { name: "The Cold One", price: 149, desc: "Cold brew, almond milk, a date or two for sweetness. No sugar. No syrup. Just vibes." },
+      { name: "The Purist", price: 129, desc: "Single origin black pour-over. No milk, no sugar, no drama. For those who like their coffee honest." }
     ]
   },
   {
     category: "Combos",
+    emoji: "✨",
     isCombo: true,
     items: [
-      { name: "The Starter Pack", price: 399, desc: "Any salad + hummus + cold coffee" },
-      { name: "The Full Meal", price: 499, desc: "Any bowl + salad + brownie" },
-      { name: "Weekend Feast", price: 899, desc: "2 bowls + 1 salad + 2 drinks + brownie — serves 2" }
+      { name: "The Taster", price: 399, desc: "Any salad + any hummus + cold coffee. For the curious first-timer." },
+      { name: "The All-In", price: 499, desc: "Any bowl + any salad + brownie. The full experience. No FOMO." },
+      { name: "The Weekend", price: 899, desc: "2 bowls + 1 salad + 2 drinks + brownie. Serves 2. Or 1 very hungry person, no judgement." }
     ]
   }
 ];
