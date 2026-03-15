@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu — The Honest Cuisine</title>
-  <meta name="description" content="This week's menu at The Honest Cuisine. Bowls, salads, mains, desserts — all made fresh, no maida, no refined sugar.">
+  <title>Order — The Honest Cuisine</title>
+  <meta name="description" content="Order healthy food from The Honest Cuisine. Weekend delivery across Mumbai via WhatsApp.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="logo.png">
 </head>
@@ -43,23 +43,42 @@
   <!-- Page Hero -->
   <section class="page-hero">
     <img src="logo.png" alt="The Honest Cuisine">
-    <h1>Menu</h1>
+    <h1>Order</h1>
   </section>
 
-  <!-- Menu Content -->
+  <!-- Order Steps -->
   <section class="section">
     <div class="container">
-      <div id="menuContainer"></div>
-
-      <div class="menu-note">
-        <p>All ingredients sourced fresh. Menu changes with the seasons.</p>
-        <p style="margin-top: 24px;">
-          Order via Instagram
-          <a href="https://instagram.com/thehonestcuisine" target="_blank" style="color: var(--sage);">@thehonestcuisine</a>
-          or
-          <a href="https://wa.me/919XXXXXXXXX" target="_blank" style="color: var(--sage);">WhatsApp</a>
-        </p>
+      <div class="section-header">
+        <h2>How to Order</h2>
+        <p>Three steps. That's it.</p>
       </div>
+
+      <div class="order-steps">
+        <div class="order-step">
+          <div class="order-step__number">1</div>
+          <h3 class="order-step__title">Check the Menu</h3>
+          <p class="order-step__desc">New menu drops on Instagram every Thursday. Fresh dishes, never repeated.</p>
+        </div>
+        <div class="order-step">
+          <div class="order-step__number">2</div>
+          <h3 class="order-step__title">WhatsApp Us</h3>
+          <p class="order-step__desc">WhatsApp your order by Friday evening. Tell us what you want, we handle the rest.</p>
+        </div>
+        <div class="order-step">
+          <div class="order-step__number">3</div>
+          <h3 class="order-step__title">Eat Fresh</h3>
+          <p class="order-step__desc">Made fresh Saturday morning, delivered by lunch. Delivery across Mumbai.</p>
+        </div>
+      </div>
+
+      <div class="order-cta">
+        <!-- Replace 919XXXXXXXXX with actual WhatsApp number -->
+        <a href="https://wa.me/919XXXXXXXXX?text=Hi!%20I%27d%20like%20to%20place%20an%20order" target="_blank" class="btn btn--whatsapp">Order on WhatsApp</a>
+        <a href="https://instagram.com/thehonestcuisine" target="_blank" class="btn btn--sage">See This Week's Menu</a>
+      </div>
+
+      <p class="order-note">Weekend orders only. Saturday & Sunday delivery.</p>
     </div>
   </section>
 
@@ -77,35 +96,7 @@
     <p class="footer__copy">&copy; 2026 The Honest Cuisine &middot; <span>nothing to hide</span></p>
   </footer>
 
-  <script src="menu-data.js"></script>
   <script>
-    const container = document.getElementById('menuContainer');
-
-    menuData.forEach(category => {
-      const isCombo = category.isCombo;
-      const section = document.createElement('div');
-      section.className = 'menu-category' + (isCombo ? ' menu-category--combos' : '');
-
-      let html = `<h2 class="menu-category__title">${category.category}</h2>`;
-
-      category.items.forEach(item => {
-        html += `
-          <div class="menu-item">
-            <div class="menu-item__header">
-              <span class="menu-item__name">${item.name}</span>
-              <span class="menu-item__dots"></span>
-              <span class="menu-item__price">&#8377;${item.price}</span>
-            </div>
-            <p class="menu-item__desc">${item.desc}</p>
-          </div>
-        `;
-      });
-
-      section.innerHTML = html;
-      container.appendChild(section);
-    });
-
-    // Nav
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);

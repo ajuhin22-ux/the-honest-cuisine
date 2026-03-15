@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — The Honest Cuisine</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    .admin-locked {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .admin-locked p {
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+    }
+    .category-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      background: rgba(122, 139, 111, 0.1);
+      padding: 2px 8px;
+      margin-left: 8px;
+    }
+    .recipe-card {
+      padding: 16px;
+      margin-bottom: 12px;
+      background: var(--white);
+      border: 1px solid #eee;
+    }
+    .recipe-card h4 {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-style: italic;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+    }
+    .recipe-card p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .recipe-card .recipe-label {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 12px 0 4px;
+    }
+    #adminContent { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="logo.png" alt="The Honest Cuisine">
+      </a>
+      <div class="nav__links">
+        <a href="story.html">Our Story</a>
+        <a href="menu.html">Menu</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="story.html">Our Story</a>
+    <a href="menu.html">Menu</a>
+    <a href="order.html">Order</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+  </div>
+
+  <!-- Locked State -->
+  <div class="admin-locked" id="adminLocked">
+    <div>
+      <img src="logo.png" alt="THC" style="width: 60px; margin: 0 auto 24px; mix-blend-mode: multiply;">
+      <p>Enter password to continue.</p>
+    </div>
+  </div>
+
+  <!-- Admin Content -->
+  <div id="adminContent">
+    <div class="admin-header">
+      <h1>Menu Manager</h1>
+      <p>Hi Juhi &#x1F44B; &mdash; manage your menu and recipes here</p>
+    </div>
+
+    <div class="container" style="padding-bottom: 80px;">
+
+      <!-- Add Item -->
+      <div class="admin-section">
+        <h2>Add Menu Item</h2>
+        <div class="admin-form" id="addItemForm">
+          <select id="itemCategory">
+            <option value="">Select category</option>
+            <option value="Bowls">Bowls</option>
+            <option value="Salads">Salads</option>
+            <option value="Mains">Mains</option>
+            <option value="Spreads & Dips">Spreads & Dips</option>
+            <option value="Small Plates">Small Plates</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Combos">Combos</option>
+          </select>
+          <input type="number" id="itemPrice" placeholder="Price (e.g. 299)">
+          <input type="text" id="itemName" placeholder="Item name" class="full-width">
+          <textarea id="itemDesc" placeholder="Description" class="full-width"></textarea>
+        </div>
+        <button class="btn btn--sage" onclick="addItem()">Add Item</button>
+      </div>
+
+      <!-- Current Menu -->
+      <div class="admin-section">
+        <h2>Current Menu</h2>
+        <div id="menuList"></div>
+      </div>
+
+      <!-- Add Recipe -->
+      <div class="admin-section">
+        <h2>Add Recipe</h2>
+        <div class="admin-form" id="addRecipeForm">
+          <input type="text" id="recipeTitle" placeholder="Recipe title" class="full-width">
+          <select id="recipeMenuItem" class="full-width">
+            <option value="">Link to menu item (optional)</option>
+          </select>
+          <textarea id="recipeIngredients" placeholder="Ingredients (one per line)" class="full-width"></textarea>
+          <textarea id="recipeSteps" placeholder="Steps (one per line)" class="full-width"></textarea>
+        </div>
+        <button class="btn btn--sage" onclick="addRecipe()">Add Recipe</button>
+      </div>
+
+      <!-- Saved Recipes -->
+      <div class="admin-section">
+        <h2>Saved Recipes</h2>
+        <div id="recipeList"><p style="font-size: 0.85rem; color: var(--text-muted);">No recipes yet.</p></div>
+      </div>
+
+      <!-- Export & Reset -->
+      <div class="admin-section">
+        <h2>Export & Reset</h2>
+        <div class="admin-btn-row">
+          <button class="btn" onclick="exportMenu()">Export menu-data.js</button>
+          <button class="btn" onclick="resetMenu()" style="border-color: #c0392b; color: #c0392b;">Reset to Default</button>
+        </div>
+        <div class="admin-export" id="exportArea" style="display: none;">
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px;">Copy this and paste into menu-data.js:</p>
+          <textarea id="exportCode" readonly></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="menu-data.js"></script>
+  <script>
+    // ---- Auth ----
+    const PASSWORD = 'thc2026';
+    let authenticated = false;
+
+    function checkAuth() {
+      const pwd = prompt('Password:');
+      if (pwd === PASSWORD) {
+        authenticated = true;
+        document.getElementById('adminLocked').style.display = 'none';
+        document.getElementById('adminContent').style.display = 'block';
+        loadMenu();
+        loadRecipes();
+      } else if (pwd !== null) {
+        alert('Wrong password.');
+        checkAuth();
+      }
+    }
+
+    checkAuth();
+
+    // ---- Data ----
+    function getMenu() {
+      const stored = localStorage.getItem('thc_menu');
+      if (stored) {
+        try { return JSON.parse(stored); } catch(e) {}
+      }
+      return JSON.parse(JSON.stringify(menuData));
+    }
+
+    function saveMenu(data) {
+      localStorage.setItem('thc_menu', JSON.stringify(data));
+    }
+
+    function getRecipes() {
+      const stored = localStorage.getItem('thc_recipes');
+      if (stored) {
+        try { return JSON.parse(stored); } catch(e) {}
+      }
+      return [];
+    }
+
+    function saveRecipes(data) {
+      localStorage.setItem('thc_recipes', JSON.stringify(data));
+    }
+
+    // ---- Render Menu ----
+    function loadMenu() {
+      const data = getMenu();
+      const list = document.getElementById('menuList');
+      const menuItemSelect = document.getElementById('recipeMenuItem');
+      list.innerHTML = '';
+
+      // Reset recipe menu item dropdown
+      menuItemSelect.innerHTML = '<option value="">Link to menu item (optional)</option>';
+
+      data.forEach((cat, ci) => {
+        cat.items.forEach((item, ii) => {
+          const row = document.createElement('div');
+          row.className = 'admin-item';
+          row.innerHTML = `
+            <div class="admin-item__info">
+              <div class="admin-item__name">${item.name} <span class="category-tag">${cat.category}</span></div>
+              <div class="admin-item__meta">&#8377;${item.price} &middot; ${item.desc}</div>
+            </div>
+            <div class="admin-item__actions">
+              <button onclick="editItem(${ci}, ${ii})">Edit</button>
+              <button class="delete" onclick="deleteItem(${ci}, ${ii})">Delete</button>
+            </div>
+          `;
+          list.appendChild(row);
+
+          // Add to recipe dropdown
+          const opt = document.createElement('option');
+          opt.value = item.name;
+          opt.textContent = `${item.name} (${cat.category})`;
+          menuItemSelect.appendChild(opt);
+        });
+      });
+    }
+
+    // ---- Add Item ----
+    function addItem() {
+      const category = document.getElementById('itemCategory').value;
+      const name = document.getElementById('itemName').value.trim();
+      const price = parseInt(document.getElementById('itemPrice').value);
+      const desc = document.getElementById('itemDesc').value.trim();
+
+      if (!category || !name || !price) {
+        alert('Please fill in category, name, and price.');
+        return;
+      }
+
+      const data = getMenu();
+      let cat = data.find(c => c.category === category);
+      if (!cat) {
+        cat = { category: category, items: [] };
+        if (category === 'Combos') cat.isCombo = true;
+        data.push(cat);
+      }
+      cat.items.push({ name, price, desc: desc || '' });
+      saveMenu(data);
+      loadMenu();
+
+      // Clear form
+      document.getElementById('itemCategory').value = '';
+      document.getElementById('itemName').value = '';
+      document.getElementById('itemPrice').value = '';
+      document.getElementById('itemDesc').value = '';
+    }
+
+    // ---- Edit Item ----
+    function editItem(ci, ii) {
+      const data = getMenu();
+      const item = data[ci].items[ii];
+      const newName = prompt('Item name:', item.name);
+      if (newName === null) return;
+      const newPrice = prompt('Price:', item.price);
+      if (newPrice === null) return;
+      const newDesc = prompt('Description:', item.desc);
+      if (newDesc === null) return;
+
+      item.name = newName.trim() || item.name;
+      item.price = parseInt(newPrice) || item.price;
+      item.desc = newDesc.trim();
+      saveMenu(data);
+      loadMenu();
+    }
+
+    // ---- Delete Item ----
+    function deleteItem(ci, ii) {
+      if (!confirm('Delete this item?')) return;
+      const data = getMenu();
+      data[ci].items.splice(ii, 1);
+      // Remove empty categories
+      if (data[ci].items.length === 0) {
+        data.splice(ci, 1);
+      }
+      saveMenu(data);
+      loadMenu();
+    }
+
+    // ---- Recipes ----
+    function addRecipe() {
+      const title = document.getElementById('recipeTitle').value.trim();
+      const menuItem = document.getElementById('recipeMenuItem').value;
+      const ingredients = document.getElementById('recipeIngredients').value.trim();
+      const steps = document.getElementById('recipeSteps').value.trim();
+
+      if (!title) {
+        alert('Please enter a recipe title.');
+        return;
+      }
+
+      const recipes = getRecipes();
+      recipes.push({ title, menuItem, ingredients, steps, created: new Date().toISOString() });
+      saveRecipes(recipes);
+      loadRecipes();
+
+      document.getElementById('recipeTitle').value = '';
+      document.getElementById('recipeMenuItem').value = '';
+      document.getElementById('recipeIngredients').value = '';
+      document.getElementById('recipeSteps').value = '';
+    }
+
+    function loadRecipes() {
+      const recipes = getRecipes();
+      const list = document.getElementById('recipeList');
+
+      if (recipes.length === 0) {
+        list.innerHTML = '<p style="font-size: 0.85rem; color: var(--text-muted);">No recipes yet.</p>';
+        return;
+      }
+
+      list.innerHTML = '';
+      recipes.forEach((r, i) => {
+        const card = document.createElement('div');
+        card.className = 'recipe-card';
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <h4>${r.title}${r.menuItem ? ` <span class="category-tag">${r.menuItem}</span>` : ''}</h4>
+            <button onclick="deleteRecipe(${i})" style="font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #ddd; background: white; padding: 4px 8px; cursor: pointer; color: #c0392b;">Delete</button>
+          </div>
+          ${r.ingredients ? `<p class="recipe-label">Ingredients</p><p>${r.ingredients}</p>` : ''}
+          ${r.steps ? `<p class="recipe-label">Steps</p><p>${r.steps}</p>` : ''}
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function deleteRecipe(i) {
+      if (!confirm('Delete this recipe?')) return;
+      const recipes = getRecipes();
+      recipes.splice(i, 1);
+      saveRecipes(recipes);
+      loadRecipes();
+    }
+
+    // ---- Export ----
+    function exportMenu() {
+      const data = getMenu();
+      let code = 'const menuData = [\n';
+      data.forEach((cat, ci) => {
+        code += '  {\n';
+        code += `    category: "${cat.category}",\n`;
+        if (cat.isCombo) code += '    isCombo: true,\n';
+        code += '    items: [\n';
+        cat.items.forEach((item, ii) => {
+          const desc = item.desc.replace(/"/g, '\\"');
+          code += `      { name: "${item.name}", price: ${item.price}, desc: "${desc}" }`;
+          code += ii < cat.items.length - 1 ? ',\n' : '\n';
+        });
+        code += '    ]\n';
+        code += '  }';
+        code += ci < data.length - 1 ? ',\n' : '\n';
+      });
+      code += '];\n';
+
+      document.getElementById('exportArea').style.display = 'block';
+      document.getElementById('exportCode').value = code;
+      document.getElementById('exportCode').select();
+    }
+
+    // ---- Reset ----
+    function resetMenu() {
+      if (!confirm('Reset menu to defaults? This will erase all changes.')) return;
+      localStorage.removeItem('thc_menu');
+      localStorage.removeItem('thc_recipes');
+      loadMenu();
+      loadRecipes();
+    }
+
+    // ---- Nav ----
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+
+</body>
+</html>

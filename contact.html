@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — The Honest Cuisine</title>
+  <meta name="description" content="Get in touch with The Honest Cuisine. Orders, collaborations, or just to say hi.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="logo.png" alt="The Honest Cuisine">
+      </a>
+      <div class="nav__links">
+        <a href="story.html">Our Story</a>
+        <a href="menu.html">Menu</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="story.html">Our Story</a>
+    <a href="menu.html">Menu</a>
+    <a href="order.html">Order</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <img src="logo.png" alt="The Honest Cuisine">
+    <h1>Contact Us</h1>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>For orders, collaborations, or just to say hi.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Info -->
+        <div class="contact-info">
+          <div class="contact-info__item">
+            <p class="contact-info__label">Instagram</p>
+            <p class="contact-info__value">
+              <a href="https://instagram.com/thehonestcuisine" target="_blank">@thehonestcuisine</a>
+            </p>
+          </div>
+          <div class="contact-info__item">
+            <p class="contact-info__label">WhatsApp</p>
+            <p class="contact-info__value">
+              <!-- Replace with actual number -->
+              <a href="https://wa.me/919XXXXXXXXX" target="_blank">+91 9XXX XXX XXX</a>
+            </p>
+          </div>
+          <div class="contact-info__item">
+            <p class="contact-info__label">Email</p>
+            <p class="contact-info__value">
+              <!-- Replace with actual email -->
+              <a href="mailto:hello@thehonestcuisine.in">hello@thehonestcuisine.in</a>
+            </p>
+          </div>
+          <div class="contact-info__item">
+            <p class="contact-info__label">Location</p>
+            <p class="contact-info__value">Mumbai, India</p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <!--
+          TODO: Connect this form to a backend service.
+          Options: Formspree (formspree.io), Google Forms, or Netlify Forms.
+          For Formspree: change form action to "https://formspree.io/f/YOUR_ID"
+          and add method="POST".
+        -->
+        <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--filled">Send Message</button>
+          <p id="formStatus" style="font-family: var(--font-body); font-size: 1rem; font-style: italic; color: var(--sage); display: none;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <img src="logo.png" alt="The Honest Cuisine" class="footer__logo">
+    <div class="footer__links">
+      <a href="story.html">Our Story</a>
+      <a href="menu.html">Menu</a>
+      <a href="order.html">Order</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+      <a href="https://wa.me/919XXXXXXXXX" target="_blank">WhatsApp</a>
+    </div>
+    <p class="footer__copy">&copy; 2026 The Honest Cuisine &middot; <span>nothing to hide</span></p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Thanks! We\'ll get back to you soon.';
+      status.style.display = 'block';
+      document.getElementById('contactForm').reset();
+      setTimeout(() => { status.style.display = 'none'; }, 4000);
+    }
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+
+</body>
+</html>

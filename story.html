@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu — The Honest Cuisine</title>
-  <meta name="description" content="This week's menu at The Honest Cuisine. Bowls, salads, mains, desserts — all made fresh, no maida, no refined sugar.">
+  <title>Our Story — The Honest Cuisine</title>
+  <meta name="description" content="Why we started The Honest Cuisine. Healthy food that doesn't suck, delivered fresh every weekend in Mumbai.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="logo.png">
 </head>
@@ -43,22 +43,43 @@
   <!-- Page Hero -->
   <section class="page-hero">
     <img src="logo.png" alt="The Honest Cuisine">
-    <h1>Menu</h1>
+    <h1>Our Story</h1>
   </section>
 
-  <!-- Menu Content -->
+  <!-- Story Content -->
   <section class="section">
     <div class="container">
-      <div id="menuContainer"></div>
+      <div class="story__content">
+        <p>We've all done it. Saved 47 healthy recipe reels. Made zero. Because who has the time, the ingredients, or the energy after work?</p>
+        <p>So we built the kitchen that makes those recipes for you. Every single weekend. Fresh, experimental, never the same menu twice. The food you wished you could cook — delivered to your door.</p>
+        <p>Mumbai's 'healthy' restaurants? Overpriced. Boring. Same menu for months. We're the opposite. New dishes every week. Seasonal ingredients. Prices that don't make you cry.</p>
+        <p>This isn't a diet. It's just really good food that happens to be good for you.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="menu-note">
-        <p>All ingredients sourced fresh. Menu changes with the seasons.</p>
-        <p style="margin-top: 24px;">
-          Order via Instagram
-          <a href="https://instagram.com/thehonestcuisine" target="_blank" style="color: var(--sage);">@thehonestcuisine</a>
-          or
-          <a href="https://wa.me/919XXXXXXXXX" target="_blank" style="color: var(--sage);">WhatsApp</a>
-        </p>
+  <!-- How It Works -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+      </div>
+      <div class="how-it-works">
+        <div class="how-it-works__step">
+          <div class="how-it-works__number">1</div>
+          <h3 class="how-it-works__title">Scroll</h3>
+          <p class="how-it-works__desc">Menu drops Thursday on Instagram. New dishes every single week.</p>
+        </div>
+        <div class="how-it-works__step">
+          <div class="how-it-works__number">2</div>
+          <h3 class="how-it-works__title">Text</h3>
+          <p class="how-it-works__desc">WhatsApp your order by Friday. That's it. No app downloads.</p>
+        </div>
+        <div class="how-it-works__step">
+          <div class="how-it-works__number">3</div>
+          <h3 class="how-it-works__title">Eat</h3>
+          <p class="how-it-works__desc">Made fresh Saturday morning. At your door by lunch.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -77,35 +98,7 @@
     <p class="footer__copy">&copy; 2026 The Honest Cuisine &middot; <span>nothing to hide</span></p>
   </footer>
 
-  <script src="menu-data.js"></script>
   <script>
-    const container = document.getElementById('menuContainer');
-
-    menuData.forEach(category => {
-      const isCombo = category.isCombo;
-      const section = document.createElement('div');
-      section.className = 'menu-category' + (isCombo ? ' menu-category--combos' : '');
-
-      let html = `<h2 class="menu-category__title">${category.category}</h2>`;
-
-      category.items.forEach(item => {
-        html += `
-          <div class="menu-item">
-            <div class="menu-item__header">
-              <span class="menu-item__name">${item.name}</span>
-              <span class="menu-item__dots"></span>
-              <span class="menu-item__price">&#8377;${item.price}</span>
-            </div>
-            <p class="menu-item__desc">${item.desc}</p>
-          </div>
-        `;
-      });
-
-      section.innerHTML = html;
-      container.appendChild(section);
-    });
-
-    // Nav
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);

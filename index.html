@@ -1,1 +1,157 @@
-<meta http-equiv="refresh" content="0; url=website.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Honest Cuisine — Fresh. Seasonal. Gone by Sunday.</title>
+  <meta name="description" content="Healthy food that doesn't bore you. New menu every weekend. No maida, no refined sugar, no preservatives. Mumbai delivery.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="logo.png" alt="The Honest Cuisine">
+      </a>
+      <div class="nav__links">
+        <a href="story.html">Our Story</a>
+        <a href="menu.html">Menu</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="story.html">Our Story</a>
+    <a href="menu.html">Menu</a>
+    <a href="order.html">Order</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <img src="logo.png" alt="The Honest Cuisine" class="hero__logo">
+      <h1 class="hero__headline">Fresh. Seasonal. Gone by Sunday.</h1>
+      <p class="hero__sub">New menu. Every weekend. No repeats.</p>
+      <p class="hero__tagline">nothing to hide</p>
+      <div class="hero__cta">
+        <a href="menu.html" class="btn btn--filled">See What's Cooking</a>
+        <a href="https://instagram.com/thehonestcuisine" target="_blank" class="btn">@thehonestcuisine</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Feed -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="section-header">
+        <h2>From Our Kitchen</h2>
+      </div>
+      <!--
+        TODO: Replace these placeholder cards with real Instagram embeds
+        when Instagram Basic Display API or oEmbed is set up.
+        Each card can be replaced with an Instagram embed or use a
+        third-party widget like SnapWidget or Elfsight.
+      -->
+      <div class="ig-grid">
+        <a href="https://instagram.com/thehonestcuisine" target="_blank" class="ig-card ig-card--sage">
+          <img src="logo.png" alt="THC">
+          <p>Follow @thehonestcuisine<br>for recipes & reels</p>
+        </a>
+        <div class="ig-card ig-card--terracotta">
+          <img src="logo.png" alt="THC">
+          <p>Follow @thehonestcuisine<br>for recipes & reels</p>
+        </div>
+        <div class="ig-card ig-card--olive">
+          <img src="logo.png" alt="THC">
+          <p>Follow @thehonestcuisine<br>for recipes & reels</p>
+        </div>
+        <div class="ig-card ig-card--terracotta">
+          <img src="logo.png" alt="THC">
+          <p>Follow @thehonestcuisine<br>for recipes & reels</p>
+        </div>
+        <div class="ig-card ig-card--sage">
+          <img src="logo.png" alt="THC">
+          <p>Follow @thehonestcuisine<br>for recipes & reels</p>
+        </div>
+        <div class="ig-card ig-card--olive">
+          <img src="logo.png" alt="THC">
+          <p>Follow @thehonestcuisine<br>for recipes & reels</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promise -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="promise__grid">
+        <div class="promise__item">
+          <h3>No maida. Ever.</h3>
+        </div>
+        <div class="promise__item">
+          <h3>No refined sugar. Period.</h3>
+        </div>
+        <div class="promise__item">
+          <h3>No preservatives. Zero.</h3>
+        </div>
+      </div>
+      <p class="promise__quote">If your dadi wouldn't recognise the ingredient, we don't use it.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <img src="logo.png" alt="The Honest Cuisine" class="footer__logo">
+    <div class="footer__links">
+      <a href="story.html">Our Story</a>
+      <a href="menu.html">Menu</a>
+      <a href="order.html">Order</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+      <a href="https://wa.me/919XXXXXXXXX" target="_blank">WhatsApp</a>
+    </div>
+    <p class="footer__copy">&copy; 2026 The Honest Cuisine &middot; <span>nothing to hide</span></p>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+
+</body>
+</html>
