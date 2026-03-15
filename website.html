@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Honest Cuisine — Nothing to Hide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --oat: #F7F4EF;
+      --charcoal: #3A3632;
+      --sage: #C5D1B6;
+      --terracotta: #C4845A;
+      --olive: #697B5A;
+      --rose: #F2DEDE;
+      --butter: #F0E6C8;
+      --peach: #EACEBE;
+      --soft-terra: #D4A490;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      background-color: var(--oat);
+      color: var(--charcoal);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ——— NAV ——— */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247, 244, 239, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 1px 0 rgba(58, 54, 50, 0.08);
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-logo {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 200;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--charcoal);
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* ——— HERO ——— */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197, 209, 182, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      margin-bottom: 2rem;
+    }
+
+    .hero-logo img {
+      height: 120px;
+      width: auto;
+    }
+
+    .hero-the {
+      display: none;
+    }
+
+    .hero-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .hero-line {
+      width: 40px;
+      height: 1px;
+      background: var(--sage);
+      margin: 0 auto 1.5rem;
+      opacity: 0.6;
+    }
+
+    .hero-tagline {
+      font-family: 'Josefin Sans', sans-serif;
+      font-style: italic;
+      font-weight: 200;
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      opacity: 0.5;
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      max-width: 380px;
+      margin: 0 auto 3rem;
+      opacity: 0.75;
+      line-height: 1.8;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: var(--olive);
+      color: var(--oat);
+      padding: 1rem 2.8rem;
+      border-radius: 50px;
+      transition: all 0.4s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--charcoal);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(58, 54, 50, 0.12);
+    }
+
+    .btn-terra {
+      background: var(--terracotta);
+    }
+
+    .btn-terra:hover {
+      background: var(--charcoal);
+    }
+
+    .link-subtle {
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--charcoal);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+      border-bottom: 1px solid rgba(58, 54, 50, 0.2);
+      padding-bottom: 2px;
+    }
+
+    .link-subtle:hover {
+      opacity: 0.9;
+    }
+
+    /* ——— SECTIONS ——— */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .section-label {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: 0.65rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0.5;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+      text-align: center;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .section-line {
+      width: 40px;
+      height: 1px;
+      background: var(--sage);
+      margin: 0 auto 3rem;
+      opacity: 0.5;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .container-wide {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ——— STORY ——— */
+    .story {
+      background: var(--oat);
+    }
+
+    .story-text {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .story-text p {
+      font-size: 0.95rem;
+      line-height: 2;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    .story-text p:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.05rem;
+      opacity: 0.6;
+    }
+
+    /* ——— HOW IT WORKS ——— */
+    .how-it-works {
+      background: linear-gradient(180deg, var(--oat) 0%, rgba(197, 209, 182, 0.08) 50%, var(--oat) 100%);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .step-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .step-icon::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid var(--sage);
+      opacity: 0.5;
+    }
+
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.6rem;
+      color: var(--olive);
+    }
+
+    .step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .step p {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      opacity: 0.7;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+
+    .step-connector {
+      display: none;
+    }
+
+    /* ——— MENU ——— */
+    .menu-section {
+      padding-bottom: 4rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .menu-item {
+      padding: 2.2rem 1.8rem;
+      border-radius: 16px;
+      background: white;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(58, 54, 50, 0.04);
+    }
+
+    .menu-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--sage);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .menu-item:nth-child(2)::before { background: var(--butter); }
+    .menu-item:nth-child(3)::before { background: var(--peach); }
+    .menu-item:nth-child(4)::before { background: var(--terracotta); }
+    .menu-item:nth-child(5)::before { background: var(--rose); }
+    .menu-item:nth-child(6)::before { background: var(--sage); }
+
+    .menu-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(58, 54, 50, 0.06);
+    }
+
+    .menu-item:hover::before {
+      opacity: 1;
+    }
+
+    .menu-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-item:nth-child(1) .menu-item-icon { background: rgba(197, 209, 182, 0.25); }
+    .menu-item:nth-child(2) .menu-item-icon { background: rgba(240, 230, 200, 0.4); }
+    .menu-item:nth-child(3) .menu-item-icon { background: rgba(234, 206, 190, 0.3); }
+    .menu-item:nth-child(4) .menu-item-icon { background: rgba(242, 222, 222, 0.3); }
+    .menu-item:nth-child(5) .menu-item-icon { background: rgba(196, 132, 90, 0.12); }
+    .menu-item:nth-child(6) .menu-item-icon { background: rgba(197, 209, 182, 0.2); }
+
+    .menu-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .menu-item:nth-child(1) .menu-dot { background: var(--olive); }
+    .menu-item:nth-child(2) .menu-dot { background: var(--terracotta); }
+    .menu-item:nth-child(3) .menu-dot { background: var(--peach); }
+    .menu-item:nth-child(4) .menu-dot { background: var(--rose); }
+    .menu-item:nth-child(5) .menu-dot { background: var(--soft-terra); }
+    .menu-item:nth-child(6) .menu-dot { background: var(--sage); }
+
+    .menu-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .menu-item .price {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      color: var(--terracotta);
+      margin-bottom: 0.6rem;
+    }
+
+    .menu-item .desc {
+      font-size: 0.75rem;
+      opacity: 0.55;
+      line-height: 1.6;
+    }
+
+    .menu-cta {
+      text-align: center;
+    }
+
+    /* ——— PROMISE ——— */
+    .promise {
+      background: linear-gradient(180deg, var(--oat) 0%, rgba(240, 230, 200, 0.12) 50%, var(--oat) 100%);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .promise-items {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .promise-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .promise-check {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.6;
+    }
+
+    .promise-check::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--olive);
+    }
+
+    .promise-item p {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .promise-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.2rem;
+      opacity: 0.6;
+    }
+
+    /* ——— FOLLOW ——— */
+    .follow {
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .follow .section-title {
+      margin-bottom: 1.2rem;
+    }
+
+    .follow-sub {
+      font-size: 0.88rem;
+      opacity: 0.6;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    /* ——— FOOTER ——— */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem 2.5rem;
+      border-top: 1px solid rgba(58, 54, 50, 0.06);
+    }
+
+    .footer-brand {
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 200;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.95rem;
+      opacity: 0.4;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--charcoal);
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.8;
+    }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      opacity: 0.3;
+      letter-spacing: 0.15em;
+    }
+
+    /* ——— ANIMATIONS ——— */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ——— MOBILE ——— */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-logo img {
+        height: 32px;
+      }
+
+      .hero {
+        padding: 5rem 1.5rem 3rem;
+        min-height: 85vh;
+      }
+
+      .hero-logo img {
+        height: 80px;
+      }
+
+      .hero-title {
+        font-size: 1.1rem;
+        white-space: normal;
+        letter-spacing: 0.1em;
+        max-width: 90vw;
+      }
+
+      .hero-tagline {
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+      }
+
+      .hero-desc {
+        font-size: 0.82rem;
+      }
+
+      .section-title {
+        white-space: normal;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        max-width: 90vw;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        max-width: 300px;
+      }
+
+      .step h3 {
+        font-size: 1rem;
+      }
+
+      .step p {
+        font-size: 0.82rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+
+      .menu-item {
+        padding: 1.4rem 1rem;
+      }
+
+      .menu-item h3 {
+        font-size: 0.9rem;
+      }
+
+      .menu-item .price {
+        font-size: 0.85rem;
+      }
+
+      .menu-item .desc {
+        font-size: 0.75rem;
+      }
+
+      .promise-items {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .promise-item p {
+        font-size: 0.9rem;
+      }
+
+      .promise-tagline {
+        font-size: 0.85rem;
+      }
+
+      .story-text p {
+        font-size: 0.88rem;
+      }
+
+      .follow-sub {
+        font-size: 0.82rem;
+      }
+
+      section {
+        padding: 3.5rem 1.2rem;
+      }
+
+      .section-label {
+        font-size: 0.6rem;
+      }
+
+      .btn-primary {
+        font-size: 0.8rem;
+        padding: 0.9rem 2rem;
+      }
+
+      footer {
+        padding: 2.5rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-logo img {
+        height: 65px;
+      }
+
+      .section-title {
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+      }
+
+      .menu-item h3 {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero-title {
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+      }
+
+      .section-title {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-logo"><img src="logo.png" alt="The Honest Cuisine"></div>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#order">Order</a></li>
+      <li><a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-logo"><img src="logo.png" alt="The Honest Cuisine"></div>
+    <h1 class="hero-title">FRESH. SEASONAL. GONE BY SUNDAY.</h1>
+    <div class="hero-line"></div>
+    <p class="hero-tagline">nothing to hide</p>
+    <p class="hero-desc">New menu. Every weekend. No repeats.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn-primary">See What's Cooking</a>
+      <a href="https://instagram.com/thehonestcuisine" target="_blank" class="link-subtle">@thehonestcuisine</a>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="container">
+      <p class="section-label">The real story</p>
+      <h2 class="section-title">YOU SCROLL. YOU SAVE. YOU NEVER MAKE IT.</h2>
+      <div class="section-line"></div>
+      <div class="story-text fade-in">
+        <p>We've all done it. Saved 47 healthy recipe reels. Made zero. Because who has the time, the ingredients, or the energy after work?</p>
+        <p>So we built the kitchen that makes those recipes for you. Every single weekend. Fresh, experimental, never the same menu twice. The food you wished you could cook &mdash; delivered to your door.</p>
+        <p>Mumbai's "healthy" restaurants? Overpriced. Boring. Same menu for months. We're the opposite. New dishes every week. Seasonal ingredients. Prices that don't make you cry.</p>
+        <p>This isn't a diet. It's just really good food that happens to be good for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="order">
+    <div class="container">
+      <p class="section-label">Dead simple</p>
+      <h2 class="section-title">HOW IT WORKS</h2>
+      <div class="section-line"></div>
+      <div class="steps">
+        <div class="step fade-in">
+          <div class="step-icon">
+            <span class="step-number">1</span>
+          </div>
+          <h3>Scroll</h3>
+          <p>New menu drops on Instagram every Thursday. Seasonal. Always changing.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-icon">
+            <span class="step-number">2</span>
+          </div>
+          <h3>Text</h3>
+          <p>WhatsApp your order by Friday. That's it. No app. No signup.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-icon">
+            <span class="step-number">3</span>
+          </div>
+          <h3>Eat</h3>
+          <p>Made fresh Saturday morning. At your door by lunch. Real food. Finally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div class="container-wide">
+      <p class="section-label">This week's drop</p>
+      <h2 class="section-title">WHAT'S COOKING</h2>
+      <div class="section-line"></div>
+      <div class="menu-grid">
+        <div class="menu-item fade-in">
+          <div class="menu-item-icon"><div class="menu-dot"></div></div>
+          <h3>Burrito Bowl</h3>
+          <div class="price">&#8377;299</div>
+          <p class="desc">Loaded. Fresh salsa, guac, beans, spiced veggies. No guilt.</p>
+        </div>
+        <div class="menu-item fade-in">
+          <div class="menu-item-icon"><div class="menu-dot"></div></div>
+          <h3>Thai Tofu Basil Curry Bowl</h3>
+          <div class="price">&#8377;329</div>
+          <p class="desc">Coconut curry. Crispy tofu. Thai basil. Dangerously good.</p>
+        </div>
+        <div class="menu-item fade-in">
+          <div class="menu-item-icon"><div class="menu-dot"></div></div>
+          <h3>Peri Peri Paneer Salad</h3>
+          <div class="price">&#8377;249</div>
+          <p class="desc">Spicy paneer. Fresh greens. The salad you'll actually finish.</p>
+        </div>
+        <div class="menu-item fade-in">
+          <div class="menu-item-icon"><div class="menu-dot"></div></div>
+          <h3>Classic Hummus</h3>
+          <div class="price">&#8377;169</div>
+          <p class="desc">Creamy. Lemony. Scoopable. The OG.</p>
+        </div>
+        <div class="menu-item fade-in">
+          <div class="menu-item-icon"><div class="menu-dot"></div></div>
+          <h3>Sweet Potato Walnut Brownie</h3>
+          <div class="price">&#8377;149</div>
+          <p class="desc">Zero maida. Zero refined sugar. 100% fudgy. Yes, really.</p>
+        </div>
+        <div class="menu-item fade-in">
+          <div class="menu-item-icon"><div class="menu-dot"></div></div>
+          <h3>Cold Coffee</h3>
+          <div class="price">&#8377;149</div>
+          <p class="desc">No sugar. Just cold brew, almond milk, and a date or two.</p>
+        </div>
+      </div>
+      <div class="menu-cta">
+        <a href="https://instagram.com/thehonestcuisine" target="_blank" class="btn-primary btn-terra">View Full Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="promise" id="promise">
+    <div class="container">
+      <p class="section-label">The rules</p>
+      <h2 class="section-title">WHAT WE DON'T USE</h2>
+      <div class="section-line"></div>
+      <div class="promise-items fade-in">
+        <div class="promise-item">
+          <div class="promise-check"></div>
+          <p>No maida. Ever.</p>
+        </div>
+        <div class="promise-item">
+          <div class="promise-check"></div>
+          <p>No refined sugar. Period.</p>
+        </div>
+        <div class="promise-item">
+          <div class="promise-check"></div>
+          <p>No preservatives. Zero.</p>
+        </div>
+      </div>
+      <p class="promise-tagline">If your dadi wouldn't recognise the ingredient, we don't use it.</p>
+    </div>
+  </section>
+
+  <!-- FOLLOW -->
+  <section class="follow" id="follow">
+    <div class="container">
+      <p class="section-label">Come hang</p>
+      <h2 class="section-title">RECIPES. REELS. REAL FOOD.</h2>
+      <div class="section-line"></div>
+      <p class="follow-sub">We post recipes you can actually make. And on weekends, we make them for you.</p>
+      <a href="https://instagram.com/thehonestcuisine" target="_blank" class="btn-primary">@thehonestcuisine</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-brand">THE HONEST CUISINE</p>
+    <p class="footer-tagline">nothing to hide</p>
+    <div class="footer-links">
+      <a href="https://instagram.com/thehonestcuisine" target="_blank">Instagram</a>
+      <a href="#">WhatsApp</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 The Honest Cuisine</p>
+  </footer>
+
+  <script>
+    // Nav shadow on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Honest Cuisine — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500;1,600&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F7F4EF;
+    --charcoal: #3A3632;
+    --sage: #C5D1B6;
+    --terracotta: #C4845A;
+    --olive: #697B5A;
+    --sage-light: #e0e8d6;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .menu-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 32px 80px;
+  }
+
+  /* ── Header ── */
+  .header img {
+    height: 100px;
+    width: auto;
+    margin-bottom: 1.2rem;
+  }
+
+  .header {
+    text-align: center;
+    padding-bottom: 48px;
+  }
+
+  .header h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.3rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    line-height: 1.1;
+  }
+
+  .header .tagline {
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    margin-top: 10px;
+    letter-spacing: 0.3em;
+  }
+
+  .divider {
+    width: 80px;
+    height: 1px;
+    background: var(--sage);
+    margin: 0 auto;
+  }
+
+  .divider-wide {
+    width: 100%;
+    height: 1px;
+    background: var(--sage-light);
+    margin: 0 auto;
+  }
+
+  /* ── Category ── */
+  .category {
+    margin-top: 52px;
+  }
+
+  .category-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  /* ── Menu Item ── */
+  .item {
+    margin-bottom: 32px;
+  }
+
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.35rem;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+
+  .item-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--sage);
+    margin-bottom: 5px;
+    min-width: 24px;
+  }
+
+  .item-price {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--terracotta);
+    white-space: nowrap;
+  }
+
+  .item-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #8a857e;
+    margin-top: 4px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Combos ── */
+  .combo-badge {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--olive);
+    color: var(--cream);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .combo-item {
+    background: rgba(197, 209, 182, 0.12);
+    border-left: 2px solid var(--sage);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .combo-item .item-top {
+    margin-bottom: 4px;
+  }
+
+  .combo-item .item-desc {
+    margin-top: 2px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 64px;
+    text-align: center;
+    padding-top: 40px;
+  }
+
+  .footer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #a09a93;
+    line-height: 1.8;
+  }
+
+  .footer .promise {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-top: 28px;
+    line-height: 1.8;
+  }
+
+  .footer .order-cta {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    margin-top: 20px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .menu-page {
+      padding: 30px 16px 50px;
+    }
+
+    .header img {
+      height: 70px;
+      margin-bottom: 0.8rem;
+    }
+
+    .header h1 {
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+    }
+
+    .header .tagline {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+    }
+
+    .category-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+    }
+
+    .item-name {
+      font-size: 1rem;
+    }
+
+    .item-price {
+      font-size: 0.85rem;
+    }
+
+    .item-desc {
+      font-size: 0.82rem;
+    }
+
+    .category {
+      margin-top: 36px;
+    }
+
+    .item {
+      margin-bottom: 22px;
+    }
+
+    .combo-badge {
+      font-size: 0.6rem;
+    }
+
+    .footer-note {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .header h1 {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+    }
+
+    .item-name {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="menu-page">
+
+  <!-- Header -->
+  <header class="header">
+    <img src="logo.png" alt="The Honest Cuisine">
+    <h1>The Honest Cuisine</h1>
+    <p class="tagline">nothing to hide</p>
+  </header>
+  <div class="divider"></div>
+
+  <!-- BOWLS -->
+  <section class="category">
+    <h2 class="category-name">Bowls</h2>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Burrito Bowl</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;299</span>
+      </div>
+      <p class="item-desc">rice, beans, roasted veggies, fresh salsa, guacamole</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Thai Tofu Basil Curry Bowl</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;329</span>
+      </div>
+      <p class="item-desc">silken tofu, fragrant basil-coconut curry, quinoa</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Paneer Quinoa Salad Bowl</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;279</span>
+      </div>
+      <p class="item-desc">grilled paneer, quinoa, fresh greens, lemon dressing</p>
+    </div>
+  </section>
+
+  <div class="divider-wide"></div>
+
+  <!-- SALADS -->
+  <section class="category">
+    <h2 class="category-name">Salads</h2>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Peri Peri Paneer Salad</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;249</span>
+      </div>
+      <p class="item-desc">spiced paneer, mixed greens, roasted peppers</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Three Bean Salad</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;219</span>
+      </div>
+      <p class="item-desc">kidney beans, chickpeas, black beans, herb vinaigrette</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Green Goddess Salad</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;239</span>
+      </div>
+      <p class="item-desc">avocado, cucumber, mixed greens, tahini dressing</p>
+    </div>
+  </section>
+
+  <div class="divider-wide"></div>
+
+  <!-- MAINS -->
+  <section class="category">
+    <h2 class="category-name">Mains</h2>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Healthy Pizza</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;279</span>
+      </div>
+      <p class="item-desc">whole wheat base, seasonal vegetables, fresh herbs</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Vegan Pasta (Red Sauce)</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;249</span>
+      </div>
+      <p class="item-desc">fresh tomato basil, whole wheat penne</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Vegan Pasta (White Sauce)</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;269</span>
+      </div>
+      <p class="item-desc">cashew cream, mushrooms, garlic</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Veggie Waffle</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;199</span>
+      </div>
+      <p class="item-desc">savoury waffle with pesto or mint chutney</p>
+    </div>
+  </section>
+
+  <div class="divider-wide"></div>
+
+  <!-- SPREADS & DIPS -->
+  <section class="category">
+    <h2 class="category-name">Spreads &amp; Dips</h2>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Classic Hummus</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;169</span>
+      </div>
+      <p class="item-desc">chickpea, tahini, lemon, olive oil</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Beetroot Hummus</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;179</span>
+      </div>
+      <p class="item-desc">roasted beet, chickpea, tahini</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Basil Hummus</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;179</span>
+      </div>
+      <p class="item-desc">fresh basil, chickpea, garlic</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Kidney Bean Hummus</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;169</span>
+      </div>
+      <p class="item-desc">lobia, cumin, olive oil</p>
+    </div>
+  </section>
+
+  <div class="divider-wide"></div>
+
+  <!-- SMALL PLATES -->
+  <section class="category">
+    <h2 class="category-name">Small Plates</h2>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Saut&eacute;ed Veggie Dill Chilla</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;189</span>
+      </div>
+      <p class="item-desc">moong dal chilla, seasonal vegetables, fresh dill</p>
+    </div>
+  </section>
+
+  <div class="divider-wide"></div>
+
+  <!-- DESSERTS -->
+  <section class="category">
+    <h2 class="category-name">Desserts</h2>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Sweet Potato Walnut Brownie</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;149</span>
+      </div>
+      <p class="item-desc">no refined sugar, no maida</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Avocado Mousse</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;169</span>
+      </div>
+      <p class="item-desc">dark chocolate, avocado, coconut cream</p>
+    </div>
+  </section>
+
+  <div class="divider-wide"></div>
+
+  <!-- DRINKS -->
+  <section class="category">
+    <h2 class="category-name">Drinks</h2>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Cold Coffee</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;149</span>
+      </div>
+      <p class="item-desc">no sugar, almond milk, date sweetened</p>
+    </div>
+
+    <div class="item">
+      <div class="item-top">
+        <span class="item-name">Black Coffee</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;129</span>
+      </div>
+      <p class="item-desc">single origin, freshly brewed</p>
+    </div>
+  </section>
+
+  <div class="divider-wide"></div>
+
+  <!-- COMBOS -->
+  <section class="category">
+    <h2 class="category-name">Combos</h2>
+    <div style="text-align:center; margin-bottom: 28px;">
+      <span class="combo-badge">better together</span>
+    </div>
+
+    <div class="combo-item">
+      <div class="item-top">
+        <span class="item-name">The Starter Pack</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;399</span>
+      </div>
+      <p class="item-desc">any salad + hummus + cold coffee</p>
+    </div>
+
+    <div class="combo-item">
+      <div class="item-top">
+        <span class="item-name">The Full Meal</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;499</span>
+      </div>
+      <p class="item-desc">any bowl + salad + brownie</p>
+    </div>
+
+    <div class="combo-item">
+      <div class="item-top">
+        <span class="item-name">Weekend Feast</span>
+        <span class="item-dots"></span>
+        <span class="item-price">&#8377;899</span>
+      </div>
+      <p class="item-desc">serves 2 &mdash; 2 bowls + 1 salad + 2 drinks + brownie</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="divider" style="margin-bottom: 40px;"></div>
+    <p>All ingredients sourced fresh.<br>Menu changes with the seasons.</p>
+    <p class="order-cta" style="margin-top: 24px;">
+      Order via Instagram <strong>@thehonestcuisine</strong> or WhatsApp
+    </p>
+    <p class="promise">
+      We use no refined flour, no refined sugar, no artificial preservatives.
+    </p>
+  </footer>
+
+</div>
+
+</body>
+</html>
