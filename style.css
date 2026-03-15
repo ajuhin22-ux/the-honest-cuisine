@@ -329,12 +329,13 @@ h4 { font-size: 1.1rem; line-height: 1.4; }
 
 .hero__sub {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: clamp(0.65rem, 2.5vw, 0.85rem);
   font-weight: 300;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-secondary);
   margin-bottom: 12px;
+  white-space: nowrap;
 }
 
 .hero__tagline {
